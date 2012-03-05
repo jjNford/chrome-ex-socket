@@ -14,7 +14,7 @@ popup.html :
       <title>Extension Popup</title>
       <script src="js/socket.js">
         
-        var printNumbers(x, y, z) {
+        function printNumbers(x, y, z) {
           console.log(x, y, z);
         };
         
