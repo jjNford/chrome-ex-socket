@@ -23,11 +23,16 @@
  * SOFTWARE.
  * 
  */
+
 (function() {
 
 	window.Socket = {
 	
+		/**
+		 * Init
+		 */
 		init: function() {
+			this.tasks = 0;
 			this.port = chrome.extension.connect({name: "popupToBackground"});
 
 			chrome.extension.onConnect.addListener(function(port) {
@@ -61,14 +66,39 @@
 		bind: function() {},
 		
 		/**
-		 * @param - namespace - Namespace of message destination.
-		 * @param - literal - Object of message destination.
-		 * @param - method - Method of message destination. 
+		 * On Message
+		 * 
+		 * Triggered when the port receives a new message.
+		 * 
+		 * @param msg Message received by the port.
 		 */
-		postMessage: function(namespace, literal, method, args) {
-			Socket.port.postMessage({namespace: namespace, literal: literal, method: method, args: args});
-		}
+		onMessage: function(msg) {},
+		
+		/**
+		 * Post Message
+		 * 
+		 * Sends a message object through the port.
+		 * 
+		 * @param msg Message object to send through the port.
+		 */
+		postMessage: function(msg) {},
+		
+		/**
+		 * Post Task - Posts a task to the background page, incrementing the task counter.
+		 * 
+		 * @param msg Message object that is send to the background page through the port.
+		 */
+		postTask: function(msg) {},
+		
+		/**
+		 * Post Task Complete
+		 * 
+		 * Decrements the current number of background tasks running, if none are running the popup
+		 * is notified that all background processing is complete.
+		 */
+		postTaskComplete: function() {}
 	};
 
 	Socket.init();
+	
 })();
