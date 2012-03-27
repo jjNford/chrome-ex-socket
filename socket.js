@@ -56,6 +56,11 @@
 		},
 		
 		/**
+		 * Bind
+		 */
+		bind: function() {},
+		
+		/**
 		 * @param - namespace - Namespace of message destination.
 		 * @param - literal - Object of message destination.
 		 * @param - method - Method of message destination. 
