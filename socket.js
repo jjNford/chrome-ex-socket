@@ -34,30 +34,7 @@
 		init: function() {
 			this.tasks = 0;
 			this.port = chrome.extension.connect({name: "popupToBackground"});
-
-			chrome.extension.onConnect.addListener(function(port) {
-				if(port.name == "backgroundToPopup") {}
-				else if(port.name == "popupToBackground") {
-					Socket.port = chrome.extension.connect({name: "backgroundToPopup"});
-				}
-				else {
-					return;
-				}
-				
-				port.onMessage.addListener(function(msg) {
-					try {
-						window[msg.namespace][msg.literal][msg.method].apply(this, msg.args);
-					}
-					catch(UnknownDestination) {
-						/* 
-						 * ------------------------------------------------------------------------- 
-						 * Add code here for messages that cannot find destination.
-						 * -------------------------------------------------------------------------
-						 * 
-						 */
-					}
-				});
-			});
+			this.bind();
 		},
 		
 		/**
