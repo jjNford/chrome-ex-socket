@@ -87,23 +87,22 @@
 			});
 		},
 		
-		/**
-		 * On Message
-		 * 
-		 * Triggered when the port receives a new message.
-		 * 
-		 * @param msg Message received by the port.
-		 */
-		onMessage: function(msg) {},
-		
-		/**
-		 * Post Message
-		 * 
-		 * Sends a message object through the port.
-		 * 
-		 * @param msg Message object to send through the port.
-		 */
-		postMessage: function(msg) {},
+		onMessage: function(msg) {
+			try {
+				if(msg.type === "message") {
+					if(Socket.port.name == "up") {
+						backgroundMessageReceived(msg);
+					} else {
+						popupMessageReceived(msg);
+					}
+				} else if(msg.type === "task") {
+					Socket.tasks++;
+					taskReceived(msg);
+				} else if(msg.type === "taskComplete") {
+					tasksComplete();					
+				}
+			} catch(UnknownMesssageType) {}
+		},
 		
 		/**
 		 * Post Task - Posts a task to the background page, incrementing the task counter.
