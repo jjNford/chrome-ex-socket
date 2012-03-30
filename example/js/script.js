@@ -17,6 +17,6 @@ function updateTaskCount(count) {
 // When document is ready create click bindings.
 $(document).ready( function() {
 	$('.add_task').on('click', function() {
-		Socket.postTask({type: "task"});
+		Socket.postTask();
 	});
 });
