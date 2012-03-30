@@ -104,12 +104,22 @@
 			} catch(UnknownMesssageType) {}
 		},
 		
-		/**
-		 * Post Task - Posts a task to the background page, incrementing the task counter.
-		 * 
-		 * @param msg Message object that is send to the background page through the port.
-		 */
-		postTask: function(msg) {},
+		postMessage: function(msg) {
+			try {
+				msg.type = "message";
+				Socket.port.postMessage(msg);
+			} catch(PortPostException) {}
+		},
+
+		postTask: function(msg) {
+			if(Socket.port.name === "down") {
+				taskStarted(msg);
+			}	
+			try {
+				msg.type = "task";
+				Socket.port.postMessage(msg);
+			} catch(PortPostException) {}
+		},
 		
 		/**
 		 * Post Task Complete
