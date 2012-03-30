@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 150px;
+}
+
+button {
+	width: 100%;
+	height: 25px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#eaeaea));
+	border: 1px solid #bbbbbb;
+	border-radius: 3px;
+	outline: none;
+}
+
+button:active {
+	background: -webkit-gradient(linear, left top, left bottom, from(#eaeaea), to(#fafafa));
+}
+
+.count {
+	width: 100%;
+	height: 75px;
+	color: red;
+	font-family: arial, sans-serif, clean;
+	font-size: 15px;
+	text-align: center;
+	line-height: 75px;
+}
+
+.loading {
+	background: url('../img/loading.gif') center center no-repeat;
+}
