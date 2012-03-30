@@ -4,8 +4,9 @@ This provides and easy way to communicate continously between an extension popup
 
 How To Use
 ----------
-Just add socket.js to your project and include it in both the popup page and the background page.  
+Just add socket.js to your project and include it in both the popup page and the background page. 
 The socket connection will be automatically create each time the popup window is opened.
+Just implement the noted functions in socket.js and you are done.
 An example extension and its source can be found in the `example` directory.
 
 API
