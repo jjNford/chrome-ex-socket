@@ -52,14 +52,12 @@
 	 */
 	function taskReceived(msg) {
 		Socket.postMessage({
-			type: "message",
 			method: "updateTaskCount",
 			param: Socket.tasks
 		});
 		setTimeout((function(){
 			Socket.postTaskComplete();
 			Socket.postMessage({
-				type: "message",
 				method: "updateTaskCount",
 				param: (Socket.tasks)
 			});
@@ -126,6 +124,9 @@
 		
 		postMessage: function(msg) {
 			try {
+				if(!msg) {
+					msg = {};
+				}
 				msg.type = "message";
 				Socket.port.postMessage(msg);
 			} catch(PortPostException) {}
@@ -136,6 +137,9 @@
 				taskStarted(msg);
 			}	
 			try {
+				if(!msg) {
+					msg = {};
+				}
 				msg.type = "task";
 				Socket.port.postMessage(msg);
 			} catch(PortPostException) {}
