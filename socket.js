@@ -30,33 +30,38 @@
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Called when the extension popup receives a message from the background page.
+	 * Triggered when the extension popup receives a message from the extension background page. 
+	 * Executes on the extension popup.
 	 * 
-	 * @param msg A message object [type = message].
+	 * @param msg A message object.
 	 */
 	function popupMessageReceived(msg) {};
 	
 	/**
-	 * Called when the extension background page receives a message from the popup.
+	 * Triggered when extension background page receives a message from the extension popup. 
+	 * Executes on the extension background page.
 	 * 
-	 * @param msg A message object [type = message].
+	 * @param msg A message object.
 	 */
 	function backgroundMessageReceived(msg) {};
 	
 	/**
-	 * Called when the extension background page receives a new task message.
+	 * Triggered when the extension background page receives a new task message. 
+	 * Executes on the extension background page.
 	 * 
-	 * @param A message object [type = task].
+	 * @param A message object.
 	 */
 	function taskReceived(msg) {};
 	
 	/**
-	 * Called when a task is started.  Executes on the extension popup.
+	 * Triggered when an extension background task is started. 
+	 * Executes on the extension popup.
 	 */
 	function taskStarted() {};
 	
 	/**
-	 * Called when all extension background tasks have been completed.  Executes on extension popup.
+	 * Triggered when all extension background tasks have been completed. 
+	 * Executes on the extension popup.
 	 */
 	function tasksComplete() {};
 
