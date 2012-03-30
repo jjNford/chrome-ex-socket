@@ -23,14 +23,47 @@
  * SOFTWARE.
  * 
  */
-
 (function() {
 
-	window.Socket = {
+	// ---------------------------------------------------------------------------------------------
+	// Override these methods <---------------------------------------------------------------------
+	// ---------------------------------------------------------------------------------------------
+
+	/**
+	 * Called when the extension popup receives a message from the background page.
+	 * 
+	 * @param msg A message object [type = message].
+	 */
+	function popupMessageReceived(msg) {};
 	
-		/**
-		 * Init
-		 */
+	/**
+	 * Called when the extension background page receives a message from the popup.
+	 * 
+	 * @param msg A message object [type = message].
+	 */
+	function backgroundMessageReceived(msg) {};
+	
+	/**
+	 * Called when the extension background page receives a new task message.
+	 * 
+	 * @param A message object [type = task].
+	 */
+	function taskReceived(msg) {};
+	
+	/**
+	 * Called when a task is started.  Executes on the extension popup.
+	 */
+	function taskStarted() {};
+	
+	/**
+	 * Called when all extension background tasks have been completed.  Executes on extension popup.
+	 */
+	function tasksComplete() {};
+
+	// ---------------------------------------------------------------------------------------------
+	// WARNING: IF SOURCE IS ALTERED BEYOND THIS POINT THERE IS RISK OF BREAKING SOMETHING. --------
+	// ---------------------------------------------------------------------------------------------
+
 		init: function() {
 			this.tasks = 0;
 			this.port = chrome.extension.connect({name: "popupToBackground"});
