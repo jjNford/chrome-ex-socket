@@ -121,13 +121,16 @@
 			} catch(PortPostException) {}
 		},
 		
-		/**
-		 * Post Task Complete
-		 * 
-		 * Decrements the current number of background tasks running, if none are running the popup
-		 * is notified that all background processing is complete.
-		 */
-		postTaskComplete: function() {}
+		postTaskComplete: function() {
+			if(Socket.tasks > 0) {
+				--Socket.tasks;
+			}
+			if(Socket.tasks === 0) {
+				try {
+					Socket.port.postMessage({type: "taskComplete"});
+				} catch(PortPostException) {}
+			}
+		}
 	};
 
 	Socket.init();
