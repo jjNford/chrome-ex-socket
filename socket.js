@@ -72,23 +72,14 @@
 			this.bind();
 		},
 		
-		/**
-		 * Bind
-		 */
-		bind: function() {	
-			
-			// Attach connection listenr to port.
+		bind: function() {				
 			chrome.extension.onConnect.addListener( function(port) {
-				if(port.name === "popupToBackground") {
-					Socket.port = chrome.extension.connect({name: "backgroundToPopup"});
-				}
-				
-				// Attach messaage listener to port.
+				if(port.name === "down") {
+					Socket.port = chrome.extension.connect({name: "up"});
+				}				
 				port.onMessage.addListener( function(msg) {
 					Socket.onMessage(msg);
-				});
-				
-				// Attach disconnection listern to port.
+				});				
 				Socket.port.onDisconnect.addListener( function(port) {
 					port.onMessage.removeListener();
 					Socket.port.onMessage.removeListener();
