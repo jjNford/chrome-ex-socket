@@ -64,9 +64,11 @@
 	// WARNING: IF SOURCE IS ALTERED BEYOND THIS POINT THERE IS RISK OF BREAKING SOMETHING. --------
 	// ---------------------------------------------------------------------------------------------
 
+	window.Socket = {
+
 		init: function() {
 			this.tasks = 0;
-			this.port = chrome.extension.connect({name: "popupToBackground"});
+			this.port = chrome.extension.connect({name: "down"});
 			this.bind();
 		},
 		
